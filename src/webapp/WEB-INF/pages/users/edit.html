@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title
+            th:text="${#strings.equals(user.firstName, null) ? 'Добавить пользователя' : 'Редактировать пользователя'}"></title>
+</head>
+<body>
+<h1 th:text="${#strings.equals(user.firstName, null) ? 'Добавить пользователя' : 'Редактировать пользователя'}"></h1>
+<form th:action="@{${#strings.equals(user.firstName, null) ? '/users/add' : '/users/edit'}}" th:object="${user}"
+      method="post">
+    <input type="hidden" th:field="*{id}"/>
+    <div>
+        <label for="firstName">Имя:</label>
+        <input type="text" id="firstName" th:field="*{firstName}" required/>
+    </div>
+    <div>
+        <label for="lastName">Фамилия:</label>
+        <input type="text" id="lastName" th:field="*{lastName}" required/>
+    </div>
+    <div>
+        <button type="submit">Сохранить</button>
+        <a th:href="@{/}">Отмена</a>
+    </div>
+</form>
+</body>
+</html>
